@@ -1,7 +1,14 @@
+# The store is a static index.html at the repository root. There is no framework
+# and nothing to compile.
 [build]
   publish = "."
-  functions = "netlify/functions"
+  command = ""
+  # The payment functions (create-payment, payment-webhook) currently only exist
+  # in the "netlify-store (1)" subfolder. Move this to "netlify/functions" if they
+  # are ever copied to the repository root.
+  functions = "netlify-store (1)/netlify/functions"
 
+# Lets the store call the payment functions at /api/<name>.
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
